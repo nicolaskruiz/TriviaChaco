@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %} Sign Up {% endblock %}
+{% block css %}
+<style>
+        body{
+                background: #111;
+        }
+      .head1 {
+    color: #30fb3a;
+    font-size: 2rem;
+    font-weight: bold;
+    height: 50px;
+  }
+
+  .head2 {
+    color: #efec26;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .btn{
+          width: 96%;
+          letter-spacing: 1px;
+          background: #035007;
+          color: #fff;
+          margin: auto;
+  }
+  .btn:hover{
+          transition: 900ms;
+          color: #fff;
+          letter-spacing: 3px;
+  }
+  .container_from{
+          width: 50% !important;
+          margin: auto;
+  }
+  </style>
+  {% endblock %}
+
+  {% block body %}
+  <div class="container_from py-2 my-4   bg-dark rounded shadow-sm">
+
+    <div class="container-fuild ">
+        <div class="bg-light rounded-pill px-4 py-3 text-center font-weight-bold"
+            style="color:black;font-weight:bold">Sign Up Details</div>
+        <br>
+        <form class="row g-4" method="POST" action="/signup/">{% csrf_token %}
+            <!-- <div class="col-md-12">
+                <label for="inputname" class="form-label" style="font-weight: bold;"><i>
+                        First Name</i></label>
+                <input type="text" placeholder="Enter First Name" style="text-align: center;"
+                    class="form-control" id="first_name" name="first_name" required>
+            </div>
+            <div class="col-md-12">
+                <label for="inputname" class="form-label" style="font-weight: bold;"><i>
+                        Last Name</i></label>
+                <input type="text" placeholder="Enter Last Name" style="text-align: center;"
+                    class="form-control" id="last_name" name="last_name" required>
+            </div> -->
+            <div class="col-md-12 ">
+                <label for="inputname" class="form-label" style="font-weight: bold;"><i>
+                        Username</i></label>
+                <input type="text" placeholder="Enter Username" style="text-align: center;"
+                    class="form-control" id="username" name="username" required>
+            </div>
+            <div class="col-md-12">
+                <label for="inputname" class="form-label" style="font-weight: bold;"><i>
+                        Email</i></label>
+                <input type="email" placeholder="Enter your Email" style="text-align: center;"
+                    class="form-control" id="email" name="email" required>
+            </div>
+            <div class="col-md-12">
+                <label for="inputname" class="form-label" style="font-weight: bold;"><i>
+                        Password</i></label>
+                <input type="password" placeholder="Enter Password" style="text-align: center;"
+                    class="form-control" id="password1" name="password1" required>
+            </div>
+            <div class="col-md-12">
+                <label for="inputname" class="form-label" style="font-weight: bold;"><i>
+                        Confirm Password</i></label>
+                <input type="password" placeholder="Confirm Password" style="text-align: center;"
+                    class="form-control" id="password2" name="password2" required>
+            </div>
+            <button type="submit" class="btn my-4">Registrarse</button>
+            </form>
+            <br>
+        </div>
+  </div>
+
+  {% endblock %}

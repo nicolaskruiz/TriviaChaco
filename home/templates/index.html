@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% block title %} Quiz {% endblock %}
+{% block css %}
+<style>
+ 
+  
+
+  .container-card{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .card {
+    background: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width:70%;
+    height: 70vh;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.699);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #000;
+    gap: 2em;
+  }
+
+  #btn {
+    border: none;
+    text-decoration: none;
+    color: #fff;
+    width: 200px;
+    height:35px;
+    border-radius: 8px;
+    text-align: center;
+    background:#e6e21ab9 ;
+  }
+  .btn {
+    border: 1px solid #e6e21ab9;
+    text-decoration: none;
+    color: #000;
+  }
+  .btn:hover{
+    transition:800ms;
+    background: #6d6b199f;
+    color: #fff;
+   
+  }
+
+  .head1 {
+    color: #30fb3a;
+    font-size: 2rem;
+    font-weight: bold;
+    height: 50px;
+  }
+
+  .head2 {
+    color: #efec26;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  #btn:hover,
+  #btn:focus {
+    transition: 800ms;
+    background: #6d6b199f;
+    letter-spacing: 3px;
+    color: #fff;
+  }
+
+  
+
+  .logo {
+    position: relative;
+    bottom: 2rem;
+  }
+
+  .container-fluid {
+    height: 60px;
+  }
+ .img-font{
+   position: absolute;
+   width: 100%;
+   height: 90vh;
+ }
+</style>
+{% endblock %}
+
+
+{% block body %}
+{% load static %}
+<img class="img-font" src="{% static 'images/fondo.jpg' %}" alt="My image">
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      {% if user.is_authenticated %}
+      <div class="modal-body" id="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="start-quiz" class="btn ">Comenzar Trivia</button>
+      </div>
+      {% else %}
+      <div class="modal-body">
+        <h3>Inicie sesión para comenzar a jugar</h3>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<br><br><br>
+
+<!-- cards -->
+<!-- <div class="container">
+  <div class="container-md mx-auto mt-2">
+    <div class="row">
+
+      {% for i in quiz %}
+      <div class="col-md-4">
+        <div class="card" style="width: 21rem;">
+          <div class="card-body">
+            <h5 class="card-title" style="text-align: center;">{{i.name}}</h5>
+            <br>
+            <p class="card-text" style="text-align: center;">{{i.desc}}</p>
+            <br>
+            <button data-bs-target="#exampleModal" data-bs-toggle="modal" data-time="{{i.time}}"
+              data-questions="{{i.number_of_questions}}" data-name="{{i.name}}" data-id="{{i.id}}" id="btn"
+              style="justify-content: center;" class="attempt btn mr-2 modal-button"><i class="fas fa-link"></i>Comenzar</button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div> -->
+<div>
+  
+    <div class="container-card">
+
+      {% for i in quiz %}
+          <div class="card">
+            <h1 class="card-title" style="text-align: center;">{{i.name}}</h1>
+            <br>
+            <h3 >{{i.desc}}</h3>
+            <br>
+           
+              <button data-bs-target="#exampleModal" data-bs-toggle="modal" data-time="{{i.time}}"
+              data-questions="{{i.number_of_questions}}" data-name="{{i.name}}" data-id="{{i.id}}" id="btn"
+              style="justify-content: center;" class="attempt btn mr-2 modal-button"><i class="fas fa-link"></i>Comenzar</button>
+          </div>
+          </div>
+      {% endfor %}
+    </div>
+  
+</div>
+
+{% endblock %}
+{% block js %}
+<script>
+  const modalBtns = [...document.getElementsByClassName('modal-button')]
+  const modalBody = document.getElementById('modal-body')
+  const modaltitle = document.getElementById('modal-title')
+  const startQuiz = document.getElementById('start-quiz')
+
+  const url = window.location.href
+
+  modalBtns.forEach(modalBtn => modalBtn.addEventListener('click', () => {
+    const id = modalBtn.getAttribute('data-id')
+    const name = modalBtn.getAttribute('data-name')
+    const numberOfQuestions = modalBtn.getAttribute('data-questions')
+    const time = modalBtn.getAttribute('data-time')
+
+    modaltitle.innerHTML = `${name}`
+
+    modalBody.innerHTML = `
+    ${name} consta de ${numberOfQuestions} preguntas para responder. Obtendrá exactamente ${time} segundos para responder las ${numberOfQuestions} ¡Suerte!
+    `
+
+    startQuiz.addEventListener('click', () => {
+      window.location.href = url + id
+    });
+  }));
+</script>
+{% endblock %}
