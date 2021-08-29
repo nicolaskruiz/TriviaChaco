@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-
+{% load social_share%}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -90,7 +90,9 @@
             
             </form>
             <button class="badge bg-dark total" id="total" style="display: none;"></button> 
-            <div id="result-box"></div>      
+            <div id="result-box">
+
+            </div>      
 
         </div>
     </div>
@@ -195,6 +197,8 @@ const sendData = () => {
             const marks = response.marks
             quizForm.classList.add('not-visible')
             totalScore.innerHTML = `<h4>Final Score : ${response.score} Out Of {{quiz.number_of_questions}} marks</h4>`
+            resultBox.innerHTML = `{% post_to_facebook object_or_url "¡Publica en Facebook!" %}
+                {% post_to_whatsapp object_or_url "Compartir en WhatsApp"%}`
 
 
             marks.forEach(res=>{
