@@ -41,15 +41,16 @@
 
   }
   .btn {
-    border: 1px solid #e6e21ab9;
+    background:#fff;
+    border: 2px solid #30fb3a;
     text-decoration: none;
     color: #000;
   }
   .btn:hover{
-    transition:800ms;
-    background: #6d6b199f;
+    transition: 300ms;
+    background: #105513;
+    border: 2px solid #105513;
     color: #fff;
-   
   }
 
   .head1 {
@@ -122,11 +123,11 @@
       <div class="modal-body" id="modal-body">
       </div>
       <div class="modal-footer">
-        <button type="button" id="start-quiz" class="btn ">Comenzar Trivia</button>
+        <button type="button" id="start-quiz" class="btn ">Comenzar</button>
       </div>
       {% else %}
       <div class="modal-body">
-        <h3>Entre en su cuenta para comenzar a jugar</h3>
+        <h3>Ingrese en su cuenta para jugar</h3>
       </div>
       {% endif %}
     </div>
