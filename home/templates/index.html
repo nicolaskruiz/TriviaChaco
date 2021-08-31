@@ -20,7 +20,7 @@
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.699);
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     padding: 20px;
     color: #000;
@@ -168,8 +168,10 @@
               <h1 class="card-title" style="text-align: center;">{{i.name}}</h1>
             <br>
             </div>
-            <h3 class="card-description" >{{i.desc}}</h3>
+            <div class="card-description_container">
+              <h3 class="card-description">{{i.desc}}</h3>
             <br>
+            </div>
            
               <button data-bs-target="#exampleModal" data-bs-toggle="modal" data-time="{{i.time}}"
               data-questions="{{i.number_of_questions}}" data-name="{{i.name}}" data-id="{{i.id}}" id="btn"
