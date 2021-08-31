@@ -3,7 +3,11 @@
 {% block css %}
 <style>
   
-  
+  .img-font{
+   position: absolute;
+   width: 100%;
+   height: 90vh;
+ }
       .head1 {
     color: #30fb3a;
     font-size: 2rem;
@@ -16,30 +20,78 @@
     font-size: 2rem;
     font-weight: bold;
   }
+  .container_all{
+    
+    width:100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container_form{
+    border-radius: 12px;
+    background: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    position: absolute;
+    width:60%;
+    height:70%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .items_form-label{
+          display: flex;
+          flex-direction: column;
+          margin: 0 auto;
+          gap: 1em;
+  }
+  .btn{
+    width: 88%;
+    letter-spacing: 1px;
+    background: #e6e21ab9;
+    color: #000;
+    margin: auto;
+  }
+  .btn:hover{
+
+    transition: 800ms;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.123);
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+  }
   </style>
   {% endblock %}
 
   {% block body %}
-  <div class="row py-5 p-4 bg-white rounded shadow-sm">
+  
 
-    <div class="col-lg-6">
-        <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold"
-            style="color:black;font-weight:bold">Ingrese a su cuenta</div>
+
+  <div class="container_all">
+    {% load static %}
+  <img class="img-font" src="{% static 'images/fondo.jpg' %}" alt="My image">
+    <div class="container_form">
+      <div class="">
+        <div class=" rounded-pill px-4 py-3 my-4 text-uppercase font-weight-bold"
+            style="color:black;font-weight:bold;text-align: center;background: rgba(255, 255, 255, 0.123);border: 1px solid rgba( 255, 255, 255, 0.18 )">Ingrese a su cuenta</div>
         <br>
-        <form class="row g-4" method="POST" action="/login/">{% csrf_token %}
-            <div class="col-md-12">
-                <label for="inputname" class="form-label" style="font-weight: bold;"><i>
-                        Nombre de usuario</i></label>
-                <input type="text" placeholder="Ingresar nombre de usuario" style="text-align: center;"
-                    class="form-control" id="username" name="username" required>
-            </div>
-
-            <div class="col-md-12">
-                <label for="inputname" class="form-label" style="font-weight: bold;"><i>
-                        Contraseña</i></label>
-                <input type="password" placeholder="Ingresar contraseña" style="text-align: center;"
-                    class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Entrar</button>
-      
+      <form class="row g-4" method="POST" action="/login/">{% csrf_token %}
+        <div class="col-md-11 my-1 items_form-label">
+            <label for="inputname" class="form-label" style="font-weight: bold;"><i>
+                    Nombre de usuario</i></label>
+            <input type="text" placeholder="Ingresar nombre de usuario" style="text-align: center;"
+                class="form-control" id="username" name="username" required>
+        </div>
+  
+        <div class="col-md-11 my-1 items_form-label">
+            <label for="inputname" class="form-label" style="font-weight: bold;"><i>
+                    Contraseña</i></label>
+            <input type="password" placeholder="Ingresar contraseña" style="text-align: center;"
+                class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn my-4">Entrar</button>
+      </form>
+    </div>
+  </div>
   {% endblock %}
